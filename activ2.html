@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="libros"></div>
+    <script>
+
+//     Exercise #2: The Reading List
+// Create an object-oriented book-list!
+
+// Start with an HTML page that has the title: My Book List.
+
+// Part 1 Book
+// In your Javascript file, create a class called Book. Each Book should have several properties:
+
+// Title
+// Genre
+// Author
+// Read (true or false)
+// Read date; can be blank, otherwise needs to be a JS Date() object
+// Add to your HTML page 2 books that reference the Book objects.
+
+// Part 2 Booklist
+// In your Javascript file - create a class BookList.
+
+// BookLists should have the following properties:
+
+
+// Number of books marked as read
+// Number of books marked as not read yet
+// A reference to the next book to read (book object)
+// A reference to the current book being read (book object)
+// A reference to the last book read (book object)
+// An array of all the Books
+// Every Booklist should have a few methods:
+
+// .add(book)
+// should add a book to the books list.
+// .finishCurrentBook()
+// should mark the book that is currently being read as "read"
+// Give it a read date of new Date(Date.now())
+// Change the last book read to be the book that just got finished
+// Change the current book to be the next book to be read
+// Change the next book to be read property to be the first unread book you find in the list of books
+// Booklists and Books might need more methods than that. Try to think of more that might be useful.
+
+// Update your HTML page with a section that shows the name of your booklist, the number of books marked as read, and the next book to read.
+
+
+class Book{
+    constructor(title, genre, author, read, readDate){
+        this.title = title;
+        this.genre = genre;
+        this.author = author;
+        this.read = read;
+        this.readDate = readDate;
+
+    }
+
+    mostrar(){
+    console.log(this.title,
+      this.genre,
+      this.author, this.read,
+      this.readDate);
+
+      document.getElementById("libros").innerHTML +=   this.title + ' ' + this.genre + ' ' +
+      this.author + ' ' + this.read + ' ' +
+      this.readDate + "<br/>";
+  }
+
+}
+
+//Creamos un objeto con exito
+// let libro1 = new Book('title', 'genre', 'author', 'read', 'reaDate');
+// libro1.mostrar();
+
+class BookList extends Book{
+    constructor(leidos, noleidos, next, actual, last, lista){
+        this.leidos = [];
+        this.noleidos = [];
+        this.lista = [];
+        this.next = next;
+        this.actual = actual;
+        this.last = last;
+
+    }
+
+    add(book){
+        if(book.read == true){
+            for(let i=0; i<leidos.length; i++){
+                if(book.title === leidos.title){
+                    console.log(true);
+                }
+            }
+            this.leidos.push(book);
+        }
+        else{
+      this.noleidos.push(book);
+      console.log("pasa");
+      if(this.lista.length > 0){
+
+        this.next = "";
+        this.next = this.noleidos[0];
+
+      }else{
+        this.next = this.noleidos[0];
+      }
+    }
+    if (this.actual.length == 0) {
+      this.actual = book;
+
+    } else {
+      this.actual = "";
+      this.actual = this.noleidos[0];
+
+    }
+
+    if(book)
+    this.lista.push(book);
+
+    console.log(this.noleidos);
+    }
+
+
+finishCurrentBook(){
+  if(this.lista.length !== 0){
+
+    this.actual.read = true;
+    for (let index = 0; index < this.noleidos.length; index++) {
+
+      if(this.noleidos[index].read == true){
+        this.leidos.push(this.noleidos[index]);
+        this.noleidos.splice(index,1);
+      }else{
+        //
+      }
+    }
+
+  this.actual = this.next;
+  this.noleidos = this.noleidos[0];
+  this.last = this.noleidos[1];
+
+
+}else{}
+
+}
+
+}
+
+var dateAux = new Date();
+f= dateAux.toDateString();
+var libro1 = new Book("El codigo da Vinci","Ficción","de Dan Brown",true,f);
+var libro2 = new Book("Harry potter","Ficcion","J.K Rowling",false, f);
+var libro3 = new Book("El señor de los anillos","Ficcion","J.k.k Tolkien",true, f);
+var libro4 = new Book("El alquimista", "Filosofía", "Pailo Cohelo",true, f);
+
+libro1.mostrar();
+libro2.mostrar();
+libro3.mostrar();
+libro4.mostrar();
+//add(libro1);
+
+
+    </script>
+</body>
+</html>
